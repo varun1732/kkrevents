@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Package - Birthday Celebration | KKR Studios</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <section class="package-selection-section glass-card" id="packageSelectionSection" style="max-width:900px;margin:40px auto 0 auto;padding:32px 24px 24px 24px;">
+    <h2 class="trending-heading" style="text-align:center;margin-bottom:2em;">Choose Your Package</h2>
+    <form id="packageForm" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:center;">
+      <label class="package-card">
+        <input type="radio" name="package" value="499" required>
+        <div class="package-content">
+          <div class="package-title">Package 499 <span class="package-duration">(1 hour)</span></div>
+          <ul>
+            <li>Decoration with lights</li>
+          </ul>
+        </div>
+      </label>
+      <label class="package-card">
+        <input type="radio" name="package" value="699">
+        <div class="package-content">
+          <div class="package-title">Package 699 <span class="package-duration">(1 hour)</span></div>
+          <ul>
+            <li>Decoration with lights</li>
+            <li>½ kg normal cake</li>
+          </ul>
+        </div>
+      </label>
+      <label class="package-card">
+        <input type="radio" name="package" value="999">
+        <div class="package-content">
+          <div class="package-title">Package 999 <span class="package-duration">(1 hour)</span></div>
+          <ul>
+            <li>Decoration with lights</li>
+            <li>½ kg ice cake</li>
+            <li>LED naming letters</li>
+            <li>Projector with music</li>
+          </ul>
+        </div>
+      </label>
+      <label class="package-card">
+        <input type="radio" name="package" value="1699">
+        <div class="package-content">
+          <div class="package-title">Package 1699 <span class="package-duration">(1 hour)</span></div>
+          <ul>
+            <li>Decoration with lights</li>
+            <li>½ kg ice cake</li>
+            <li>LED naming letters</li>
+            <li>Projector with music</li>
+            <li>Photos (without edit) & 1-minute video with edit</li>
+          </ul>
+        </div>
+      </label>
+      <label class="package-card">
+        <input type="radio" name="package" value="2699">
+        <div class="package-content">
+          <div class="package-title">Package 2699 <span class="package-duration">(2 hours)</span></div>
+          <ul>
+            <li>Decoration with lights</li>
+            <li>½ kg ice cake</li>
+            <li>LED naming letters</li>
+            <li>Projector with music</li>
+            <li>Photos & 1-minute video with edit</li>
+            <li>Fog entry</li>
+          </ul>
+        </div>
+      </label>
+    </form>
+    <div style="text-align:center;margin-top:2em;">
+      <button id="packageNextBtn" class="cta-primary" style="font-size:1.1rem;padding:14px 36px;">Next</button>
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const packageForm = document.getElementById('packageForm');
+      const packageNextBtn = document.getElementById('packageNextBtn');
+      if (packageForm && packageNextBtn) {
+        packageNextBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const selected = packageForm.querySelector('input[name="package"]:checked');
+          if (!selected) {
+            alert('Please select a package to proceed.');
+            return;
+          }
+          localStorage.setItem('selectedPackage', selected.value);
+          window.location.href = 'birthday-party.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html> 

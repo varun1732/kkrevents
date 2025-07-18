@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find My Booking - KKR Studios</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .find-booking-container { max-width: 400px; margin: 60px auto; background: rgba(255,255,255,0.97); border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 36px 28px; }
+        .find-booking-title { text-align: center; color: #764ba2; margin-bottom: 24px; }
+        .find-booking-form { display: flex; flex-direction: column; gap: 18px; }
+        .find-booking-form input { padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; }
+        .find-booking-form button { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; border: none; border-radius: 8px; padding: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .find-booking-form button:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+        .booking-result, .booking-error { margin-top: 28px; padding: 18px; border-radius: 10px; }
+        .booking-result { background: #e6f7ef; color: #222; }
+        .booking-error { background: #ffeaea; color: #c0392b; }
+    </style>
+</head>
+<body>
+    <div class="find-booking-container">
+        <h2 class="find-booking-title"><i class="fas fa-search"></i> Find My Booking</h2>
+        <form class="find-booking-form" id="findBookingForm">
+            <input type="tel" id="mobileInput" placeholder="Enter your mobile number" required pattern="[0-9]{10,15}">
+            <button type="submit"><i class="fas fa-search"></i> Find Booking</button>
+        </form>
+        <div id="bookingResult"></div>
+    </div>
+    <script>
+      console.log('DEBUG: find-booking.html loaded.');
+    </script>
+    <script src="find-booking.js"></script>
+</body>
+</html> 

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bride-to-be Booking - KKR Studios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .event-hero {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .event-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .event-hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .event-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: sparkle 2s infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        .event-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .event-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .event-booking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .event-booking-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .event-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .event-info h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .event-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .event-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .event-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .event-features i {
+            color: #ff6b9d;
+            width: 20px;
+        }
+        
+        .event-booking-form {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .form-title {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .event-form-group {
+            margin-bottom: 20px;
+        }
+        
+        .event-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .event-form-group input,
+        .event-form-group select,
+        .event-form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .event-form-group input:focus,
+        .event-form-group select:focus,
+        .event-form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b9d;
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+        }
+        
+        .event-book-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .event-book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+        }
+        
+        .back-to-home {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+        
+        .back-to-home a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .back-to-home a:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .event-time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .event-time-slot {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .event-time-slot:hover {
+            background: #e0e0e0;
+            border-color: #ff6b9d;
+        }
+
+        .event-time-slot.selected {
+            background: #ff6b9d;
+            color: white;
+            border-color: #ff6b9d;
+            font-weight: 600;
+        }
+
+        .event-time-slot.booked {
+            background: #ffebee;
+            color: #e53935;
+            border-color: #e53935;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .event-booking-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .event-title {
+                font-size: 2rem;
+            }
+            
+            .event-hero {
+                min-height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <div class="back-to-home">
+        <a href="index.html">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+        </a>
+    </div>
+
+    <!-- Event Hero Section -->
+    <div class="event-hero">
+        <div class="event-hero-content">
+            <div class="event-icon">
+                <i class="fas fa-crown"></i>
+            </div>
+            <h1 class="event-title">Bride-to-be</h1>
+            <p class="event-subtitle">Capture your pre-wedding moments with our exclusive bride-to-be photography sessions</p>
+        </div>
+    </div>
+
+    <!-- Booking Container -->
+    <div class="event-booking-container">
+        <div class="event-booking-grid">
+
+
+            <!-- Booking Form -->
+            <div class="event-booking-form">
+                <h2 class="form-title">Book Your Bride-to-be Session</h2>
+                
+                <form id="brideBookingForm">
+                    <div class="event-form-group">
+                        <label for="name">
+                            <i class="fas fa-user"></i> Full Name
+                        </label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="event-form-group">
+                        <label for="mobile">
+                            <i class="fas fa-phone"></i> Mobile Number
+                        </label>
+                        <input type="tel" id="mobile" name="mobile" required>
+                    </div>
+
+                    <div class="event-form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="event-form-group">
+                        <label for="date">
+                            <i class="fas fa-calendar"></i> Session Date
+                        </label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="event-form-group">
+                        <label>
+                            <i class="fas fa-clock"></i> Preferred Time
+                        </label>
+                        <div id="timeSlots" class="event-time-slots"></div>
+                        <input type="hidden" id="time" name="time" required>
+                    </div>
+
+
+
+                    <div class="event-form-group">
+                        <label for="location">
+                            <i class="fas fa-map-marker-alt"></i> Preferred Location
+                        </label>
+                        <select id="location" name="location" required>
+                            <option value="">Select location</option>
+                            <option value="Studio">Studio</option>
+                            <option value="Outdoor">Outdoor</option>
+                            <option value="Beach">Beach</option>
+                            <option value="Garden">Garden</option>
+                            <option value="City">City</option>
+                            <option value="Custom">Custom Location</option>
+                        </select>
+                    </div>
+
+
+
+
+
+                    <div class="event-form-group">
+                        <label for="special-requests">
+                            <i class="fas fa-comment"></i> Special Requests
+                        </label>
+                        <textarea id="special-requests" name="special-requests" rows="3" placeholder="Any special requirements, props, or requests..."></textarea>
+                    </div>
+
+                    <button type="submit" class="event-book-btn">
+                        <i class="fas fa-crown"></i> Book Bride-to-be Session
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const eventType = 'Bride-to-be';
+            // Set minimum date to today
+            const dateInput = document.getElementById('date');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+            dateInput.value = today;
+
+            // Generate time slots on page load and when date changes
+            generateTimeSlots();
+            dateInput.addEventListener('change', generateTimeSlots);
+
+            // Handle form submission
+            document.getElementById('brideBookingForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(e.target);
+                const selectedTime = document.getElementById('time').value;
+                if (!selectedTime) {
+                    showNotification('Please select a time slot', 'error');
+                    return;
+                }
+                const booking = {
+                    id: generateBookingId(),
+                    type: eventType,
+                    name: formData.get('name'),
+                    mobile: formData.get('mobile'),
+                    email: formData.get('email'),
+                    date: formData.get('date'),
+                    time: selectedTime,
+                    location: formData.get('location'),
+                    specialRequests: formData.get('special-requests'),
+                    amount: 20, // Bride-to-be rate
+                    status: 'pending',
+                    paymentMethod: 'UPI',
+                    createdAt: new Date().toISOString()
+                };
+
+                // Save booking to localStorage
+                const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+                bookings.push(booking);
+                localStorage.setItem('bookings', JSON.stringify(bookings));
+
+                // Show success message
+                showNotification('Bride-to-be session booking submitted successfully!', 'success');
+                
+                // Redirect to thank you page
+                window.location.href = 'thank-you.html';
+            });
+
+            function showThankYouMessage(eventType) {
+                const container = document.querySelector('.event-booking-form');
+                if (container) {
+                    container.innerHTML = `<div class='thank-you-box'><h2>Thank You for Booking Your Slot!</h2><p>Your booking for <b>${eventType}</b> was successful. You can download your ticket below.</p><button id='downloadTicketBtn' class='event-book-btn'><i class='fas fa-download'></i> Download Ticket</button></div>`;
+                    document.getElementById('downloadTicketBtn').onclick = function() {
+                        generateTicketPDF(booking, eventType);
+                    };
+                }
+            }
+
+            function generateTicketPDF(booking, eventType) {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(20);
+                doc.text('KKR Studios Booking Ticket', 105, 20, { align: 'center' });
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Event: ${eventType}`, 20, 35);
+                doc.text(`Booking ID: ${booking.id}`, 20, 45);
+                doc.text(`Name: ${booking.name}`, 20, 55);
+                doc.text(`Mobile: ${booking.mobile}`, 20, 65);
+                doc.text(`Email: ${booking.email}`, 20, 75);
+                doc.text(`Date: ${booking.date}`, 20, 85);
+                doc.text(`Time: ${booking.time}`, 20, 95);
+                doc.text(`Location: ${booking.location}`, 20, 105);
+                doc.text(`Amount: ₹${booking.amount}`, 20, 115);
+                doc.text('Thank you for booking with KKR Studios!', 20, 135);
+                doc.save(`KKR-Booking-${booking.id}.pdf`);
+            }
+        });
+
+        function generateTimeSlots() {
+            const dateInput = document.getElementById('date');
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            const hiddenTimeInput = document.getElementById('time');
+            const selectedDate = dateInput.value;
+            const today = new Date().toISOString().split('T')[0];
+            const currentTime = new Date();
+            hiddenTimeInput.value = '';
+
+            // 1-hour slots for all events
+            const timeSlots = [
+                '09:00 AM-10:00 AM', '10:00 AM-11:00 AM', '11:00 AM-12:00 PM', '12:00 PM-01:00 PM',
+                '01:00 PM-02:00 PM', '02:00 PM-03:00 PM', '03:00 PM-04:00 PM', '04:00 PM-05:00 PM',
+                '05:00 PM-06:00 PM', '06:00 PM-07:00 PM', '07:00 PM-08:00 PM', '08:00 PM-09:00 PM',
+                '09:00 PM-10:00 PM'
+            ];
+
+            // Get bookings for the selected date
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            const bookedSlots = bookings.filter(b => b.date === selectedDate && b.status !== 'cancelled').map(b => b.time);
+
+            timeSlotsContainer.innerHTML = '';
+            timeSlots.forEach(time => {
+                // Hide past slots for today
+                if (selectedDate === today) {
+                    const startTime = time.split('-')[0].trim();
+                    const [hour, minute, period] = startTime.match(/(\d{2}):(\d{2})\s*(AM|PM)/).slice(1);
+                    let slotHour = parseInt(hour);
+                    if (period === 'PM' && slotHour !== 12) slotHour += 12;
+                    if (period === 'AM' && slotHour === 12) slotHour = 0;
+                    const slotDate = new Date();
+                    slotDate.setHours(slotHour, parseInt(minute), 0, 0);
+                    if (currentTime > slotDate) return;
+                }
+                const slotDiv = document.createElement('div');
+                slotDiv.className = 'event-time-slot';
+                slotDiv.textContent = time;
+                if (bookedSlots.includes(time)) {
+                    slotDiv.classList.add('booked');
+                    slotDiv.innerHTML = `<i class='fas fa-check-circle'></i> ${time} <span style='color:green'>(Booked)</span>`;
+                } else {
+                    slotDiv.addEventListener('click', function() {
+                        document.querySelectorAll('.event-time-slot.selected').forEach(s => s.classList.remove('selected'));
+                        slotDiv.classList.add('selected');
+                        hiddenTimeInput.value = time;
+                    });
+                }
+                timeSlotsContainer.appendChild(slotDiv);
+            });
+        }
+
+        function generateBookingId() {
+            return 'BB' + Date.now() + Math.random().toString(36).substr(2, 5).toUpperCase();
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KKR STUDIOS - Book Your Slot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="theme-toggle">
+        <label for="themeSwitch">Dark Mode</label>
+        <div id="themeSwitch" class="theme-switch" tabindex="0" role="button" aria-pressed="false" aria-label="Toggle dark mode"></div>
+    </div>
+    <script>
+    // Dark mode toggle logic
+    const themeSwitch = document.getElementById('themeSwitch');
+    function setDarkMode(on) {
+        document.body.classList.toggle('dark-mode', on);
+        themeSwitch.classList.toggle('active', on);
+        themeSwitch.setAttribute('aria-pressed', on);
+        localStorage.setItem('darkMode', on ? '1' : '0');
+    }
+    // Load preference
+    if (localStorage.getItem('darkMode') === '1') setDarkMode(true);
+    themeSwitch.addEventListener('click', () => setDarkMode(!document.body.classList.contains('dark-mode')));
+    themeSwitch.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            setDarkMode(!document.body.classList.contains('dark-mode'));
+            e.preventDefault();
+        }
+    });
+    </script>
+    <!-- Floating Shapes for Hero -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+    <!-- Hamburger Menu Icon -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+        <div class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!-- Sidebar Menu -->
+    <div class="sidebar-menu" id="sidebarMenu">
+        <div class="sidebar-header">
+            <button class="close-sidebar" id="closeSidebarBtn" aria-label="Close sidebar"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="menu-item-with-submenu">
+                    <a href="#" class="menu-item" data-section="book-edit"><i class="fas fa-video"></i><span>Book Edit</span><i class="fas fa-chevron-down submenu-arrow"></i></a>
+                    <ul class="submenu">
+                        <li class="menu-item-with-submenu">
+                            <a href="#" class="submenu-item" data-section="video-editing"><i class="fas fa-film"></i><span>Video Editing</span><i class="fas fa-chevron-down submenu-arrow"></i></a>
+                            <ul class="submenu">
+                                <li><a href="wedding-invitations.html" class="submenu-item" data-section="wedding-invitations"><span>Wedding Invitations</span></a></li>
+                                <li><a href="cinematic-video-editing.html" class="submenu-item" data-section="cinematic-video-editing"><span>Cinematic Video Editing</span></a></li>
+                                <li><a href="traditional-video-editing.html" class="submenu-item" data-section="traditional-video-editing"><span>Traditional Video Editing</span></a></li>
+                                <li><a href="corporate-events.html" class="submenu-item" data-section="corporate-events"><span>Corporate Events</span></a></li>
+                                <li><a href="fashion-show-editing.html" class="submenu-item" data-section="fashion-show-editing"><span>Fashion Show Editing</span></a></li>
+                                <li><a href="lyrical-video-editing.html" class="submenu-item" data-section="lyrical-video-editing"><span>Lyrical Video Editing</span></a></li>
+                                <li><a href="short-film-editing.html" class="submenu-item" data-section="short-film-editing"><span>Short Film Editing</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" class="submenu-item" data-section="photo-editing"><i class="fas fa-image"></i><span>Photo Editing</span></a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-with-submenu">
+                    <a href="#" class="menu-item" data-section="events"><i class="fas fa-calendar-alt"></i><span>Events Booking</span><i class="fas fa-chevron-down submenu-arrow"></i></a>
+                    <ul class="submenu">
+                        <li><a href="#" class="submenu-item" data-section="birthday-party"><i class="fas fa-birthday-cake"></i><span>Birthday Celebration</span></a></li>
+                        <li><a href="#" class="submenu-item" data-section="wedding-party"><i class="fas fa-heart"></i><span>Wedding Anniversary</span></a></li>
+                        <li><a href="#" class="submenu-item" data-section="bride-to-be"><i class="fas fa-crown"></i><span>Bride-to-be</span></a></li>
+                        <li><a href="#" class="submenu-item" data-section="groom-to-be"><i class="fas fa-user-tie"></i><span>Office Meetings</span></a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="menu-item" data-section="about"><i class="fas fa-info-circle"></i><span>About</span></a></li>
+                <li><a href="#" class="menu-item" data-section="help"><i class="fas fa-question-circle"></i><span>Help</span></a></li>
+                <li><a href="find-booking.html" class="menu-item" data-section="find-booking"><i class="fas fa-search"></i><span>Find My Booking</span></a></li>
+                <li><a href="#" class="menu-item" data-section="admin"><i class="fas fa-user-shield"></i><span>Admin Panel</span></a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Hero Section -->
+    <div class="hero-section animated-gradient-bg">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('images/hero-poster.jpg');" data-hide-content="false"></div>
+            <div class="hero-slider-nav">
+                <span class="hero-dot active" data-slide="0"></span>
+            </div>
+            <button class="hero-arrow hero-arrow-left" aria-label="Previous slide">&#10094;</button>
+            <button class="hero-arrow hero-arrow-right" aria-label="Next slide">&#10095;</button>
+        </div>
+        <div class="hero-content" id="heroContent">
+            <div class="hero-badge"><span>✨ Trending Now</span></div>
+            <div class="logo-container">
+                <div class="logo-glow"><i class="fas fa-camera-retro logo-icon"></i></div>
+                <h1 class="hero-title trending-heading"><span class="gradient-text">KKR STUDIOS</span></h1>
+            </div>
+            <p class="hero-subtitle">Where Creativity Meets Technology</p>
+            <div class="hero-description"><p>Experience the future of photography & videography with AI-powered editing, 4K quality, and instant delivery.</p></div>
+            <div class="social-proof-bar">
+                <span><i class="fas fa-users"></i> 500+ Happy Clients</span>
+                <span><i class="fas fa-star"></i> 4.9/5 Rating</span>
+                <span><i class="fas fa-calendar-check"></i> 24/7 Booking</span>
+            </div>
+            <div class="hero-cta">
+                <button class="cta-primary glowing-btn" onclick="scrollToBooking()"><span>Book Now</span><i class="fas fa-arrow-right"></i></button>
+                <button class="cta-secondary" onclick="scrollToFeatures()"><span>Learn More</span><i class="fas fa-play"></i></button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card glass-card">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <img src="hero-poster.jpg" alt="KKR Studios Poster" style="width:100%;height:auto;max-height:260px;object-fit:contain;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.15);background:#fff;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Booking Section -->
+    <div class="main-container">
+        <!-- Booking form and Download Ticket button removed as requested -->
+    </div>
+    <!-- Trending Features Section -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+    let booking = null;
+    document.getElementById('bookingForm').onsubmit = function(e) {
+      e.preventDefault();
+      booking = {
+        id: 'BK' + Math.floor(Math.random() * 1000000),
+        name: document.getElementById('name').value,
+        mobile: document.getElementById('mobile').value,
+        email: document.getElementById('email').value,
+        date: document.getElementById('date').value,
+        time: document.getElementById('time').value,
+        service: document.getElementById('service').value
+      };
+      alert('Booking successful! Thank you for choosing KKR Studios.');
+    };
+    </script>
+    <!-- Trending Features Section -->
+    <div class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="trending-badge"><i class="fas fa-fire"></i><span>Trending Features</span></div>
+                <h2 class="trending-heading">Why KKR Studios is Going Viral</h2>
+                <p>Discover what makes us the most talked-about studio in town</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card trending glass-card" style="background: none; box-shadow: none;">
+                 <div style="position:relative;width:100%;height:100%;min-height:180px;overflow:hidden;border-radius:18px;background:none;">
+                   <iframe src="https://www.instagram.com/reel/DInQNj4T7XK/embed" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;overflow:hidden;display:block;border-radius:18px;"></iframe>
+                 </div>
+                </div>
+                <div class="feature-card trending glass-card"><div class="feature-glow"></div><div class="feature-icon"><i class="fas fa-bolt"></i></div><div class="feature-content"><h3>Instant Delivery</h3><p>Get your edited photos and videos within minutes, not days</p><div class="feature-tag"><span>⚡ Fast</span></div></div></div>
+                <div class="feature-card trending glass-card"><div class="feature-glow"></div><div class="feature-icon"><i class="fas fa-vr-cardboard"></i></div><div class="feature-content"><h3>360° Experience</h3><p>Immersive virtual tours and 360-degree photography for next-level content</p><div class="feature-tag"><span>🌟 New</span></div></div></div>
+                <div class="feature-card trending glass-card"><div class="feature-glow"></div><div class="feature-icon"><i class="fas fa-mobile-alt"></i></div><div class="feature-content"><h3>Mobile-First</h3><p>Optimized for social media with perfect aspect ratios and filters</p><div class="feature-tag"><span>📱 Ready</span></div></div></div>
+                <div class="feature-card trending glass-card"><div class="feature-glow"></div><div class="feature-icon"><i class="fas fa-palette"></i></div><div class="feature-content"><h3>Custom Filters</h3><p>Exclusive filters and presets that make your content stand out</p><div class="feature-tag"><span>🎨 Unique</span></div></div></div>
+                <div class="feature-card trending glass-card"><div class="feature-glow"></div><div class="feature-icon"><i class="fas fa-cloud"></i></div><div class="feature-content"><h3>Cloud Storage</h3><p>Secure cloud storage with lifetime access to all your content</p><div class="feature-tag"><span>☁️ Safe</span></div></div></div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KKR Studios</h3>
+                    <p>Professional photography and videography services</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/kkr_events_07?igsh=Y3pjYm9tem02enRx" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/14EKCWiwUQG/" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VaUQfjpFCCoNG3g5mu1V" target="_blank" rel="noopener" title="WhatsApp Channel"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 9019104086</p>
+                    <p><i class="fas fa-envelope"></i> kirankumar68686@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> srinivaspura, karnataka</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#booking">Book Now</a></li>
+                        <li><a href="#cancel">Cancel Booking</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 KKR Studios. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" title="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+    <!-- Booking Confirmation Modal -->
+    <!-- Removed booking confirmation modal as requested -->
+    <!-- Thank You Modal -->
+    <!-- Removed thank you modal as requested -->
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+    <script src="script.js"></script>
+</body>
+</html> 
